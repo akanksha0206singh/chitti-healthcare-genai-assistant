@@ -692,11 +692,22 @@ if audio:
 
             st.audio(
                 audio_buffer.getvalue(),
-                format="audio/mp3"
+                format="audio/mp3",
+                autoplay=True
             )
 
         except Exception:
-         st.info(
+            st.info(
                 "Voice playback is unavailable. "
                 "Please read the text answer above."
             )
+
+    except Exception as error:
+        st.error(f"Assistant error: {error}")
+
+    finally:
+        if audio_path:
+            try:
+                os.remove(audio_path)
+            except Exception:
+                pass

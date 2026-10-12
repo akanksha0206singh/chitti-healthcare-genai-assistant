@@ -1,0 +1,26 @@
+clinic_id,clinic_name,city,state,clinic_type,opening_date,capacity,status
+C001,Hope Fertility Center 01,Patna,Bihar,Fertility Center,2022-01-12,33,Inactive
+C002,Hope Fertility Center 02,Kota,Rajasthan,Fertility Center,2015-04-11,47,Active
+C003,Hope Fertility Center 03,Patna,Bihar,Reproductive Health Center,2018-01-09,99,Active
+C004,Hope Fertility Center 04,Lucknow,Uttar Pradesh,IVF Center,2017-06-15,34,Active
+C005,Hope Fertility Center 05,Jaipur,Rajasthan,Fertility Center,2023-02-06,59,Active
+C006,Hope Fertility Center 06,Delhi,Delhi,Fertility Center,2022-06-11,113,Inactive
+C007,Hope Fertility Center 07,Kota,Rajasthan,IVF Center,2024-10-23,105,Inactive
+C008,Hope Fertility Center 08,Bengaluru,Karnataka,Fertility Center,2015-12-16,50,Inactive
+C009,Hope Fertility Center 09,Surat,Gujarat,IVF Center,2019-08-22,49,Active
+C010,Hope Fertility Center 10,Bengaluru,Karnataka,IVF Center,2015-04-30,43,Active
+C011,Hope Fertility Center 11,Mumbai,Maharashtra,Fertility Center,2017-05-28,75,Inactive
+C012,Hope Fertility Center 12,Lucknow,Uttar Pradesh,IVF Center,2020-07-23,35,Inactive
+C013,Hope Fertility Center 13,Delhi,Delhi,Fertility Center,2015-04-17,78,Active
+C014,Hope Fertility Center 14,Delhi,Delhi,IVF Center,2017-03-09,110,Inactive
+C015,Hope Fertility Center 15,Lucknow,Uttar Pradesh,Fertility Center,2022-02-23,120,Active
+C016,Hope Fertility Center 16,Udaipur,Rajasthan,Reproductive Health Center,2020-12-29,59,Inactive
+C017,Hope Fertility Center 17,Jaipur,Rajasthan,Fertility Center,2017-06-04,42,Inactive
+C018,Hope Fertility Center 18,Ahmedabad,Gujarat,IVF Center,2021-06-25,111,Inactive
+C019,Hope Fertility Center 19,Jodhpur,Rajasthan,IVF Center,2023-11-26,75,Active
+C020,Hope Fertility Center 20,Patna,Bihar,IVF Center,2015-01-27,119,Active
+C021,Hope Fertility Center 21,Lucknow,Uttar Pradesh,Reproductive Health Center,2023-11-11,51,Active
+C022,Hope Fertility Center 22,Jodhpur,Rajasthan,IVF Center,2022-09-05,78,Inactive
+C023,Hope Fertility Center 23,Indore,Madhya Pradesh,Reproductive Health Center,2018-09-28,118,Active
+C024,Hope Fertility Center 24,Patna,Bihar,IVF Center,2016-09-16,37,Active
+C025,Hope Fertility Center 25,Hyderabad,Telangana,Fertility Center,2025-07-12,70,Inactive

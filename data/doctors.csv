@@ -1,0 +1,41 @@
+doctor_id,first_name,last_name,specialization,experience_years,gender,clinic_id,joining_date,status
+D001,Gayathri,Chaudry,Gynecology,4,Female,C002,2016-12-30,On Leave
+D002,Gunbir,Parmer,Obstetrics and Gynecology,12,Female,C003,2025-02-08,On Leave
+D003,Aishani,Bassi,Embryology,14,Male,C004,2023-11-04,Active
+D004,Jeet,Radhakrishnan,Gynecology,6,Female,C005,2016-11-05,On Leave
+D005,Chaaya,Pathak,Andrology,19,Male,C009,2022-03-16,On Leave
+D006,Ekaraj,Bath,Andrology,15,Male,C010,2023-02-08,Inactive
+D007,Bimala,Buch,Fertility Specialist,6,Male,C013,2025-03-11,Active
+D008,Harrison,Rai,Reproductive Medicine,5,Female,C015,2018-12-27,On Leave
+D009,Janya,Gaba,Fertility Specialist,23,Male,C019,2019-12-23,On Leave
+D010,Shaurya,Loke,Reproductive Medicine,14,Male,C020,2023-07-17,On Leave
+D011,Ekbal,Garg,Embryology,18,Male,C021,2021-09-27,On Leave
+D012,Yash,Gade,Reproductive Medicine,23,Female,C023,2020-12-19,On Leave
+D013,Anamika,Kanda,Andrology,10,Male,C024,2023-05-11,Active
+D014,Daksh,Karnik,Embryology,7,Male,C009,2024-10-30,Active
+D015,Diya,Rattan,Obstetrics and Gynecology,10,Female,C023,2018-11-16,On Leave
+D016,Siddharth,Murty,Obstetrics and Gynecology,11,Female,C003,2018-04-14,Active
+D017,Xalak,Randhawa,Fertility Specialist,19,Female,C010,2025-07-04,On Leave
+D018,Tara,Dhar,Embryology,2,Female,C010,2018-11-05,Inactive
+D019,Yatin,Yohannan,Gynecology,9,Female,C024,2018-10-28,Active
+D020,Priya,Rastogi,Reproductive Medicine,4,Male,C020,2019-11-21,Active
+D021,Lakshit,Upadhyay,Andrology,6,Female,C024,2021-04-21,On Leave
+D022,Champak,Choudhary,Andrology,7,Male,C015,2017-08-22,On Leave
+D023,Nathaniel,Sami,Embryology,8,Female,C020,2022-05-29,On Leave
+D024,Lekha,Raj,Embryology,23,Male,C009,2022-05-27,Inactive
+D025,Upadhriti,Wadhwa,Embryology,5,Female,C019,2018-09-13,Active
+D026,Advay,Contractor,Gynecology,2,Female,C003,2023-04-29,On Leave
+D027,Amara,Oak,Reproductive Medicine,4,Female,C005,2017-03-13,Active
+D028,Radhika,Dugar,Reproductive Medicine,12,Female,C003,2020-11-15,On Leave
+D029,Adya,Tella,Gynecology,23,Male,C005,2024-03-09,Active
+D030,Yashica,Cherian,Fertility Specialist,25,Male,C019,2025-05-09,Active
+D031,Chanchal,Tripathi,Embryology,15,Female,C024,2022-07-18,Active
+D032,Michael,Prakash,Obstetrics and Gynecology,15,Male,C003,2024-03-11,Inactive
+D033,Aadi,Naik,Embryology,25,Female,C013,2021-04-01,On Leave
+D034,Isaac,Patil,Obstetrics and Gynecology,5,Female,C021,2025-06-10,Inactive
+D035,Damyanti,Khatri,Gynecology,5,Female,C023,2016-08-15,Active
+D036,Farhan,Chada,Andrology,16,Female,C005,2023-11-12,Inactive
+D037,Ekapad,Walia,Gynecology,16,Female,C004,2024-03-24,Active
+D038,Kabir,Soman,Andrology,5,Female,C015,2026-03-05,On Leave
+D039,Noah,Lanka,Reproductive Medicine,4,Female,C019,2021-09-02,Active
+D040,Pallavi,Kakar,Embryology,17,Female,C013,2025-12-24,Inactive

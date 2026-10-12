@@ -1,0 +1,25 @@
+# API keys and secrets
+.streamlit/secrets.toml
+.env
+.env.*
+!.env.example
+
+# Python temporary files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Local environments
+.venv/
+venv/
+
+# Generated vector database
+vector_store/
+
+# Local files
+.DS_Store
+*.wav
+*.log
+
+# Editor settings
+.vscode/

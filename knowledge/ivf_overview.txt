@@ -1,0 +1,33 @@
+IVF OVERVIEW
+
+In vitro fertilization (IVF) is an assisted reproductive technology in which eggs and sperm are combined in a laboratory to create embryos. An embryo may then be transferred to the uterus according to the treatment plan determined by the treating medical team.
+
+Typical IVF treatment stages include:
+
+1. Initial consultation
+The patient meets the fertility care team to discuss medical history, fertility goals, previous treatment, and the planned evaluation.
+
+2. Ovarian stimulation
+Medications may be used to stimulate the ovaries so that multiple follicles can develop. Monitoring is performed during this stage.
+
+3. Follicle monitoring
+The medical team monitors follicle development using appropriate clinical assessments, which may include ultrasound and laboratory tests.
+
+4. Egg retrieval
+When the follicles are ready, eggs are collected through a clinical procedure performed by the medical team.
+
+5. Fertilization
+Retrieved eggs are combined with sperm in a laboratory. Fertilization may be performed using standard IVF or other laboratory techniques when clinically appropriate.
+
+6. Embryo development
+Fertilized eggs develop into embryos in the laboratory. Embryo development is monitored by the embryology team.
+
+7. Embryo transfer
+An embryo may be transferred into the uterus according to the treatment plan.
+
+8. Pregnancy testing
+A pregnancy test is performed after the appropriate interval following embryo transfer, according to the treating team's instructions.
+
+IMPORTANT SAFETY NOTE
+
+This document is for general educational information in an AI demonstration project. It does not provide diagnosis, treatment recommendations, medication instructions, or individualized medical advice. Patients should consult qualified fertility professionals for decisions about their care.

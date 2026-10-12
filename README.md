@@ -105,7 +105,7 @@ The `vector_store/` directory is generated locally by the RAG build script and i
 Clone the repository and enter its directory:
 
 ```bash
-git clone https://github.com/YOUR-GITHUB-USERNAME/chitti-healthcare-genai-assistant.git
+git clone https://github.com/akanksha0206singh/chitti-healthcare-genai-assistant.git
 cd chitti-healthcare-genai-assistant
 ```
 

@@ -359,26 +359,50 @@ def validate_sql(sql_query):
 # 7. SQL answer
 # =========================================================
 
+
 def answer_sql_question_with_password(
     question,
     mysql_password,
     conversation_history=None
 ):
-
-    connection = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password=mysql_password,
-        database="healthcare_ai_db"
-    )
-
-    cursor = connection.cursor()
-
-    history = format_history(
-        conversation_history or []
-    )
+    connection = None
+    cursor = None
 
     try:
+        mysql_host = os.getenv("MYSQL_HOST", "localhost")
+        mysql_port = int(os.getenv("MYSQL_PORT", "3306"))
+        mysql_user = os.getenv("MYSQL_USER", "root")
+        mysql_database = os.getenv(
+            "MYSQL_DATABASE", "healthcare_ai_db"
+        )
+        configured_password = (
+            os.getenv("MYSQL_PASSWORD") or mysql_password
+        )
+
+        connection_options = {
+            "host": mysql_host,
+            "port": mysql_port,
+            "user": mysql_user,
+            "password": configured_password,
+            "database": mysql_database,
+        }
+
+        mysql_ssl_ca = os.getenv("MYSQL_SSL_CA")
+        if mysql_ssl_ca:
+            connection_options.update({
+                "ssl_ca": mysql_ssl_ca,
+                "ssl_verify_cert": True,
+                "ssl_verify_identity": True,
+            })
+
+        connection = mysql.connector.connect(
+            **connection_options
+        )
+        cursor = connection.cursor()
+
+        history = format_history(
+            conversation_history or []
+        )
 
         prompt = f"""
 You are a MySQL SQL assistant for a healthcare analytics system.
@@ -396,72 +420,43 @@ Generate ONE read-only MySQL query.
 
 IMPORTANT MEANING RULES:
 
-1. "IVF stages" normally means the educational stages
-   of IVF and should be handled by RAG.
-
-2. "Treatment stages" means records in the
-   treatment_stages table.
-
-3. "IVF treatments" means records in the treatments
-   table when the user asks about counts, status,
-   totals, rankings, or other database information.
-
-4. Never confuse:
-   - IVF educational stages
-   - treatment records
-   - treatment_stages records
-
+1. "IVF stages" normally means educational IVF stages
+   and should be handled by RAG.
+2. "Treatment stages" means records in treatment_stages.
+3. "IVF treatments" means records in treatments when
+   asking about counts, status, totals, or rankings.
+4. Do not confuse educational stages, treatment records,
+   and treatment_stages records.
 5. Never invent tables or columns.
-
 6. Never invent categorical values.
-
-7. Treatment status values:
-   Completed, Ongoing, Cancelled, Paused
-
-8. Payment status values:
-   Paid, Pending, Failed, Refunded
-
-9. Appointment status values:
-   Completed, No-show, Rescheduled, Cancelled
-
-10. Lab test result status values:
-    Normal, Borderline, Abnormal
-
+7. Treatment statuses: Completed, Ongoing, Cancelled, Paused.
+8. Payment statuses: Paid, Pending, Failed, Refunded.
+9. Appointment statuses: Completed, No-show,
+   Rescheduled, Cancelled.
+10. Lab-test result statuses: Normal, Borderline, Abnormal.
 11. Use only tables and columns in the schema.
-
 12. Use valid MySQL syntax.
-
-13. Generate exactly ONE SELECT or WITH query.
-
-14. Never use:
-    INSERT, UPDATE, DELETE, DROP, ALTER, TRUNCATE,
-    CREATE, REPLACE, GRANT, REVOKE, or RENAME.
-
-15. Use previous conversation only to understand the
-    meaning of the current question.
+13. Generate exactly ONE SELECT query.
+14. Never generate INSERT, UPDATE, DELETE, DROP, ALTER,
+    TRUNCATE, CREATE, REPLACE, GRANT, REVOKE, or RENAME.
+15. Use previous conversation only to understand context.
 
 Return SQL only. Do not include explanations.
 """
-
 
         response = client.models.generate_content(
             model="gemini-3.5-flash-lite",
             contents=prompt
         )
 
-        sql_query = response.text.strip()
+        sql_query = (response.text or "").strip()
 
-        safe, sql_query, error = validate_sql(
-            sql_query
-        )
+        safe, sql_query, error = validate_sql(sql_query)
 
         if not safe:
-            return (
-                f"SQL blocked: {error}"
-            )
+            return f"SQL blocked: {error}"
 
         cursor.execute(sql_query)
-
         results = cursor.fetchall()
 
         if not results:
@@ -469,12 +464,7 @@ Return SQL only. Do not include explanations.
 
         first_row = results[0]
 
-        # -------------------------------------------------
-        # One column
-        # -------------------------------------------------
-
         if len(first_row) == 1:
-
             value = first_row[0]
 
             if value is None:
@@ -488,80 +478,44 @@ Return SQL only. Do not include explanations.
 
             return str(value)
 
-
-        # -------------------------------------------------
-        # Two columns
-        # -------------------------------------------------
-
         if len(first_row) == 2:
-
-            name = first_row[0]
-            value = first_row[1]
+            name, value = first_row
 
             if value is None:
-                return (
-                    f"{name}: no matching data was found."
-                )
+                return f"{name}: no matching data was found."
 
             if isinstance(value, Decimal):
-                return (
-                    f"{name}: ₹{value:,.2f}"
-                )
+                return f"{name}: ₹{value:,.2f}"
 
             if isinstance(value, (int, float)):
-                return (
-                    f"{name}: {value:,}"
-                )
+                return f"{name}: {value:,}"
 
             return f"{name}: {value}"
 
-
-        # -------------------------------------------------
-        # Three columns
-        # -------------------------------------------------
-
         if len(first_row) == 3:
-
-            first = first_row[0]
-            second = first_row[1]
-            third = first_row[2]
+            first, second, third = first_row
 
             if isinstance(third, Decimal):
-                return (
-                    f"{second} ({first}): "
-                    f"₹{third:,.2f}"
-                )
+                return f"{second} ({first}): ₹{third:,.2f}"
 
             if isinstance(third, (int, float)):
-                return (
-                    f"{second} ({first}) has "
-                    f"{third:,}."
-                )
+                return f"{second} ({first}) has {third:,}."
 
-            return (
-                f"{second} ({first}): {third}"
-            )
-
-
-        # -------------------------------------------------
-        # Larger result
-        # -------------------------------------------------
+            return f"{second} ({first}): {third}"
 
         return "\n".join(
-            str(row)
-            for row in results[:10]
+            str(row) for row in results[:10]
         )
 
     except mysql.connector.Error as error:
-
         return f"MySQL error: {error}"
 
     finally:
+        if cursor is not None:
+            cursor.close()
 
-        cursor.close()
-        connection.close()
-
-
+        if connection is not None:
+            connection.close()
 # =========================================================
 # 8. RAG answer with relevance checking and source citations
 # =========================================================

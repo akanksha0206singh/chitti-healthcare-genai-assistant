@@ -1,3 +1,5 @@
+import subprocess
+import sys
 import os
 import tempfile
 import subprocess
@@ -26,6 +28,43 @@ from healthcare_assistant import (
     answer_rag_question_for_app
 )
 
+@st.cache_resource
+def ensure_rag_index():
+    import chromadb
+
+    chroma_client = chromadb.PersistentClient(
+        path="vector_store"
+    )
+
+    try:
+        collection = chroma_client.get_collection(
+            name="healthcare_knowledge"
+        )
+        if collection.count() > 0:
+            return
+    except Exception:
+        pass
+
+    with st.spinner(
+        "Preparing Chitti's healthcare knowledge base..."
+    ):
+        result = subprocess.run(
+            [sys.executable, "build_rag.py"],
+            capture_output=True,
+            text=True
+        )
+
+    if result.returncode != 0:
+        st.error(
+            "Could not prepare the knowledge base. "
+            "Check the Gemini API key and app logs."
+        )
+        if result.stderr:
+            st.code(result.stderr[-2000:])
+        st.stop()
+
+
+ensure_rag_index()
 
 # =========================================================
 # Chitti UI styling

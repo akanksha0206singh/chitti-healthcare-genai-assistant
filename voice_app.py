@@ -1,4 +1,7 @@
 import subprocess
+from io import BytesIO
+from gtts import gTTS
+import subprocess
 import sys
 import os
 import tempfile
@@ -677,35 +680,23 @@ if audio:
         # =================================================
         # Text-to-speech
         # =================================================
-
         try:
+            audio_buffer = BytesIO()
 
-            subprocess.Popen(
-                [
-                    "say",
-                    str(answer)
-                ]
+            gTTS(
+                text=str(answer),
+                lang="en"
+            ).write_to_fp(audio_buffer)
+
+            audio_buffer.seek(0)
+
+            st.audio(
+                audio_buffer.getvalue(),
+                format="audio/mp3"
             )
 
         except Exception:
-
-            pass
-
-
-    except Exception as error:
-
-        st.error(
-            f"Assistant error: {error}"
-        )
-
-
-    finally:
-
-        if audio_path:
-
-            try:
-                os.remove(
-                    audio_path
-                )
-            except Exception:
-                pass
+         st.info(
+                "Voice playback is unavailable. "
+                "Please read the text answer above."
+            )
